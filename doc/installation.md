@@ -6,15 +6,15 @@
 composer require sylius/refund-plugin
 ```
 
-Ensure that you have `wkhtmltopdf` installed, and that you have the proper path to it set in the .env file (`WKHTMLTOPDF_PATH` and `WKHTMLTOIMAGE_PATH` variables).
+Ensure that you have `wkhtmltopdf` and `wkhtmltoimage` installed, and that you have the proper path to it set in the shop's .env file (`WKHTMLTOPDF_PATH` and `WKHTMLTOIMAGE_PATH` variables).
 
 #### 2. Require Mollie plugin with composer:
 
 ```bash
-composer require mollie/sylius-plugin --no-scripts
+composer require mollie/sylius-plugin -w --no-scripts
 ```
 
-#### 3. Update the GatewayConfig entity class with the following code:
+#### 3. Either update the GatewayConfig entity class using annotations:
 
 ```php
 <?php
@@ -59,7 +59,7 @@ class GatewayConfig extends BaseGatewayConfig implements GatewayConfigInterface
 
 You can find more annotation examples under the [tests/Application/src/Entity/*](/tests/Application/src/Entity/) path.
 
-If you don't use annotations, you can also define new Entity mapping inside your `src/Resources/config/doctrine` directory:
+Or, if you don't use annotations, you can also define new Entity mapping inside your `src/Resources/config/doctrine` directory:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 
@@ -91,7 +91,7 @@ sylius_payum:
               model: App\Entity\Payment\GatewayConfig
 ```
 
-#### 4. Update the Order entity class with the following code:
+#### 4. Either update the Order entity class  using annotations:
 
 ```php
 <?php
@@ -174,7 +174,7 @@ class Order extends BaseOrder implements OrderInterface
 }
 ```
 
-If you don't use annotations, you can also define new Entity mapping inside your `src/Resources/config/doctrine` directory.
+Or, if you don't use annotations, you can also define new Entity mapping inside your `src/Resources/config/doctrine` directory.
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 
@@ -201,7 +201,7 @@ sylius_order:
                 model: App\Entity\Order\Order
 ```
 
-#### 5. Update the Product entity class with the following code:
+#### 5. Either update the Product entity class using annotations:
 
 ```php
 <?php
@@ -231,7 +231,7 @@ class Product extends BaseProduct implements ProductInterface
 }
 ```
 
-If you don't use annotations, you can also define new Entity mapping inside your `src/Resources/config/doctrine` directory.
+Or, if you don't use annotations, you can also define new Entity mapping inside your `src/Resources/config/doctrine` directory.
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 
@@ -267,7 +267,7 @@ sylius_product:
                     model: App\Entity\Product\Product
 ```
 
-#### 6. Update the ProductVariant entity class with the following code:
+#### 6. Either update the ProductVariant entity class using annotations:
 
 ```php
 <?php
@@ -362,7 +362,7 @@ trait RecurringProductVariantTrait
 }
 ```
 
-If you don't use annotations, you can also define new Entity mapping inside your `src/Resources/config/doctrine` directory.
+Or, if you don't use annotations, you can also define new Entity mapping inside your `src/Resources/config/doctrine` directory.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -566,7 +566,7 @@ Encore.addEntry(
 )
 ```
 
-If you are using Sylius version <= 1.11 ensure that Node version 12 is currently used, otherwise Node version 14 should be used:
+If you are using Sylius version <= 1.11 ensure that Node version **12** is currently used, otherwise Node version **14** should be used:
 
 ```bash
 nvm install 12
