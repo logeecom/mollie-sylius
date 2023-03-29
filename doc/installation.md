@@ -488,6 +488,8 @@ bin/console assets:install
 
 ### Frontend
 
+There are 3 ways to install assets:
+
 #### 1. Installing assets without `webpack`
 
 If you're not using `webpack`, you can install assets via:
