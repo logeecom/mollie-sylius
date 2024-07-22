@@ -229,7 +229,7 @@ class Product extends BaseProduct implements ProductInterface
      * @ORM\ManyToOne(targetEntity="SyliusMolliePlugin\Entity\ProductType")
      * @ORM\JoinColumn(name="product_type_id", fieldName="productType", onDelete="SET NULL")
      */
-    protected ?ProductType $productType = null;
+    protected $productType = null;
 }
 ```
 
