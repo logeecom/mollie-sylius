@@ -109,6 +109,7 @@ use SyliusMolliePlugin\Entity\RecurringOrderTrait;
 use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Core\Model\Order as BaseOrder;
 use Sylius\Component\Core\Model\OrderItemInterface;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
