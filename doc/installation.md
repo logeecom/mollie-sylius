@@ -91,7 +91,7 @@ sylius_payum:
               model: App\Entity\Payment\GatewayConfig
 ```
 
-#### 4. Update the Order entity class with the following code:
+#### 4. Update the Order entity class with the following code: (do this also when updating to plugin version 5.4.0)
 
 ```php
 <?php
@@ -100,12 +100,13 @@ declare(strict_types=1);
 
 namespace App\Entity\Order;
 
+use SyliusMolliePlugin\Entity\MolliePaymentIdOrderTrait;
 use SyliusMolliePlugin\Entity\OrderInterface;
 use SyliusMolliePlugin\Entity\MollieSubscriptionInterface;
 use SyliusMolliePlugin\Entity\AbandonedEmailOrderTrait;
+use SyliusMolliePlugin\Entity\QRCodeOrderTrait;
 use SyliusMolliePlugin\Entity\RecurringOrderTrait;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Core\Model\Order as BaseOrder;
 use Sylius\Component\Core\Model\OrderItemInterface;
 
@@ -117,6 +118,8 @@ class Order extends BaseOrder implements OrderInterface
 {
     use AbandonedEmailOrderTrait;
     use RecurringOrderTrait;
+    use QRCodeOrderTrait;
+    use MolliePaymentIdOrderTrait;
 
     /**
      * @var bool
@@ -129,6 +132,18 @@ class Order extends BaseOrder implements OrderInterface
      * @ORM\Column(type="integer", name="recurring_sequence_index", nullable=true)
      */
     protected ?int $recurringSequenceIndex = null;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="text", name="qr_code", nullable=true)
+     */
+    protected ?string $qrCode = null;
+    
+    /**
+     * @var string|null
+     * @ORM\Column(type="text", name="mollie_payment_id", nullable=true)
+     */
+    protected ?string $molliePaymentId = null;
 
     /**
      * @var MollieSubscriptionInterface|null
@@ -173,6 +188,7 @@ class Order extends BaseOrder implements OrderInterface
         return 0 < $this->getNonRecurringItems()->count();
     }
 }
+
 ```
 
 If you don't use annotations, you can also define new Entity mapping inside your `src/Resources/config/doctrine` directory.

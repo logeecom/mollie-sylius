@@ -79,6 +79,14 @@ final class Options
             PaymentMethod::IN3,
             PaymentMethod::BILLIE,
             MealVoucher::MEAL_VOUCHERS,
+            PaymentMethod::RIVERTY
+        ];
+    }
+
+    public static function getOnlyPaymentAPIMethods(): array
+    {
+        return [
+            PaymentMethod::ALMA
         ];
     }
 }

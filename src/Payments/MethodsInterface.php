@@ -5,7 +5,9 @@ declare(strict_types=1);
 
 namespace SyliusMolliePlugin\Payments;
 
+use SyliusMolliePlugin\Payments\Methods\Alma;
 use SyliusMolliePlugin\Payments\Methods\ApplePay;
+use SyliusMolliePlugin\Payments\Methods\Bancomatpay;
 use SyliusMolliePlugin\Payments\Methods\Bancontact;
 use SyliusMolliePlugin\Payments\Methods\BankTransfer;
 use SyliusMolliePlugin\Payments\Methods\Belfius;
@@ -15,7 +17,6 @@ use SyliusMolliePlugin\Payments\Methods\CreditCard;
 use SyliusMolliePlugin\Payments\Methods\DirectDebit;
 use SyliusMolliePlugin\Payments\Methods\Eps;
 use SyliusMolliePlugin\Payments\Methods\GiftCard;
-use SyliusMolliePlugin\Payments\Methods\Giropay;
 use SyliusMolliePlugin\Payments\Methods\Ideal;
 use SyliusMolliePlugin\Payments\Methods\In3;
 use SyliusMolliePlugin\Payments\Methods\Kbc;
@@ -25,15 +26,19 @@ use SyliusMolliePlugin\Payments\Methods\KlarnaPayNow;
 use SyliusMolliePlugin\Payments\Methods\Klarnasliceit;
 use SyliusMolliePlugin\Payments\Methods\MealVoucher;
 use SyliusMolliePlugin\Payments\Methods\MyBank;
+use SyliusMolliePlugin\Payments\Methods\Payconiq;
 use SyliusMolliePlugin\Payments\Methods\PayPal;
 use SyliusMolliePlugin\Payments\Methods\Przelewy24;
+use SyliusMolliePlugin\Payments\Methods\Riverty;
 use SyliusMolliePlugin\Payments\Methods\SofortBanking;
 use Mollie\Api\Resources\Method;
+use SyliusMolliePlugin\Payments\Methods\Trustly;
 use SyliusMolliePlugin\Payments\Methods\Twint;
 
 interface MethodsInterface
 {
     public const GATEWAYS = [
+        Alma::class,
         ApplePay::class,
         Bancontact::class,
         BankTransfer::class,
@@ -41,7 +46,6 @@ interface MethodsInterface
         CreditCard::class,
         Eps::class,
         GiftCard::class,
-        Giropay::class,
         Ideal::class,
         Kbc::class,
         KlarnaOne::class,
@@ -58,6 +62,10 @@ interface MethodsInterface
         Billie::class,
         Twint::class,
         Blik::class,
+        Riverty::class,
+        Trustly::class,
+        Bancomatpay::class,
+        Payconiq::class
     ];
 
     public function getAllEnabled(): array;
