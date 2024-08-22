@@ -501,10 +501,6 @@ sylius_mollie_plugin:
 In case if you have installed Sylius 1.13.x version, you will need to first remove { resource: "@SyliusRefundPlugin/Resources/config/app/config.yml" }
 from acme/config/packages/sylius_refund.yaml
 
-```
-bin/console doctrine:migrations:migrate
-```
-
 Apply migration to your database: (this is for the plugin fresh installation only)
 ```
 bin/console doctrine:migrations:migrate
