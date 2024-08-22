@@ -246,6 +246,36 @@ class Product extends BaseProduct implements ProductInterface
      * @ORM\ManyToOne(targetEntity="SyliusMolliePlugin\Entity\ProductType")
      * @ORM\JoinColumn(name="product_type_id", fieldName="productType", onDelete="SET NULL")
      */
+    protected ?ProductType $productType = null;
+}
+```
+In case if you have installed Sylius 1.13.x version, use the following code instead
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace App\Entity\Product;
+
+use Doctrine\ORM\Mapping as ORM;
+use SyliusMolliePlugin\Entity\ProductInterface;
+use SyliusMolliePlugin\Entity\ProductTrait;
+use Sylius\Component\Core\Model\Product as BaseProduct;
+use SyliusMolliePlugin\Entity\ProductType;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="sylius_product")
+ */
+class Product extends BaseProduct implements ProductInterface
+{
+    use ProductTrait;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="SyliusMolliePlugin\Entity\ProductType")
+     * @ORM\JoinColumn(name="product_type_id", fieldName="productType", onDelete="SET NULL")
+     */
     protected $productType = null;
 }
 ```
@@ -467,6 +497,13 @@ sylius_mollie_plugin:
 ```
 
 #### 12. Update your database
+
+In case if you have installed Sylius 1.13.x version, you will need to first remove { resource: "@SyliusRefundPlugin/Resources/config/app/config.yml" }
+from acme/config/packages/sylius_refund.yaml
+
+```
+bin/console doctrine:migrations:migrate
+```
 
 Apply migration to your database: (this is for the plugin fresh installation only)
 ```
