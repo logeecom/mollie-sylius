@@ -8,10 +8,6 @@
 
     <services>
         <defaults public="true" />
-
-        <!-- Register the Symfony HttpClient -->
-        <service id="symfony.http_client" class="Symfony\Component\HttpClient\Psr18Client" />
-
         <service id="sylius_mollie_plugin.checker.version.mollie_plugin_latest_version_checker" class="SyliusMolliePlugin\Checker\Version\MolliePluginLatestVersionChecker">
         </service>
     </services>
